@@ -2,6 +2,8 @@ import {
   ActionButtonRows,
   Content,
   DraggableTopBar,
+  FloatingNoteTitle,
+  MarkdownEditor,
   NotePreviewList,
   RootLayout,
   Sidebar
@@ -16,7 +18,10 @@ const App = () => {
           <ActionButtonRows className="flex justify-between mt-1" />
           <NotePreviewList className="mt-3 space-y-1" />
         </Sidebar>
-        <Content className="bg-zinc-900/50">Content</Content>
+        <Content className="bg-zinc-900/50">
+          <FloatingNoteTitle className="pt-2" />
+          <MarkdownEditor />
+        </Content>
       </RootLayout>
     </>
   )
