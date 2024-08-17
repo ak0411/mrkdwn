@@ -11,6 +11,14 @@ function createWindow(): void {
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
+    center: true,
+    title: 'markItDown',
+    frame: false,
+    vibrancy: 'under-window', // macOS
+    visualEffectState: 'active', // macOS
+    titleBarStyle: 'hidden',
+    trafficLightPosition: { x: 15, y: 10 }, // macOS
+    backgroundMaterial: 'acrylic',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: true,
