@@ -12,7 +12,12 @@ try {
     readNote: (...args: Parameters<ReadNote>) => ipcRenderer.invoke('readNote', ...args),
     writeNote: (...args: Parameters<WriteNote>) => ipcRenderer.invoke('writeNote', ...args),
     createNote: (...args: Parameters<CreateNote>) => ipcRenderer.invoke('createNote', ...args),
-    deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('deleteNote', ...args)
+    deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('deleteNote', ...args),
+    platform: () => ipcRenderer.invoke('get-platform'),
+    minimize: () => ipcRenderer.send('window-minimize'),
+    maximize: () => ipcRenderer.send('window-maximize'),
+    close: () => ipcRenderer.send('window-close'),
+    getPlatform: () => ipcRenderer.invoke('get-platform')
   })
 } catch (error) {
   console.error(error)

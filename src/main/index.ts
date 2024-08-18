@@ -14,12 +14,9 @@ function createWindow(): void {
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     center: true,
-    title: 'markItDown',
+    title: 'MarkItDown',
     frame: false,
-    vibrancy: 'under-window', // macOS
-    visualEffectState: 'active', // macOS
-    titleBarStyle: 'hidden',
-    trafficLightPosition: { x: 15, y: 10 }, // macOS
+    titleBarStyle: 'hiddenInset',
     backgroundMaterial: 'acrylic',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -27,6 +24,16 @@ function createWindow(): void {
       contextIsolation: true
     }
   })
+
+  ipcMain.on('window-minimize', () => mainWindow.minimize())
+  ipcMain.on('window-maximize', () => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize()
+    } else {
+      mainWindow.maximize()
+    }
+  })
+  ipcMain.on('window-close', () => mainWindow.close())
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -65,6 +72,8 @@ app.whenReady().then(() => {
   ipcMain.handle('writeNote', (_, ...args: Parameters<WriteNote>) => writeNote(...args))
   ipcMain.handle('createNote', (_, ...args: Parameters<CreateNote>) => createNote(...args))
   ipcMain.handle('deleteNote', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args))
+
+  ipcMain.handle('get-platform', () => process.platform)
 
   createWindow()
 
