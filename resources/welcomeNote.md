@@ -13,7 +13,7 @@ This is an _italic_ text.
 
 ## Headings
 
-Here are all the heading formats currently supported by **_NoteMark_**:
+Here are all the heading formats currently supported:
 
 # Heading 1
 

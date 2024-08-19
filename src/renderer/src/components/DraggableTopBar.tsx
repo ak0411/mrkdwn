@@ -13,15 +13,15 @@ export const DraggableTopBar = () => {
       <div className="flex items-center m-2 space-x-2">
         <button
           onClick={handleClose}
-          className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors"
+          className="w-4 h-4 rounded-full bg-red-500 hover:bg-red-600 transition-colors"
         />
         <button
           onClick={handleMinimize}
-          className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors"
+          className="w-4 h-4 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors"
         />
         <button
           onClick={handleMaximize}
-          className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors"
+          className="w-4 h-4 rounded-full bg-green-500 hover:bg-green-600 transition-colors"
         />
       </div>
     </header>

@@ -2,6 +2,13 @@
 
 A note-taking app with markdown support.
 
+## TODOs
+
+- [ ] Rename notes
+- [ ] Pop-out notes
+- [ ] Pin notes on top
+- [ ] Save notes on cloud (database)
+
 ## Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
