@@ -10,4 +10,4 @@ export type Minimize = () => void
 export type Maximize = () => void
 export type Close = () => void
 
-export type GetPlatform = () => Promise<string>
+export type GetPlatform = () => Promise<NodeJS.Platform>

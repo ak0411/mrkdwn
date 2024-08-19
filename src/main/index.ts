@@ -14,7 +14,7 @@ function createWindow(): void {
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     center: true,
-    title: 'MarkItDown',
+    title: 'Mrkdwn',
     frame: false,
     titleBarStyle: 'hiddenInset',
     backgroundMaterial: 'acrylic',

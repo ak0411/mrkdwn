@@ -1,6 +1,6 @@
-# mark-it-down
+# Mrkdwn
 
-An Electron application with React and TypeScript
+A note-taking app with markdown support.
 
 ## Recommended IDE Setup
 

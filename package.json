@@ -1,9 +1,9 @@
 {
-  "name": "mark-it-down",
+  "name": "mrkdwn",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "A note-taking app with markdown support.",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "akaravek",
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",

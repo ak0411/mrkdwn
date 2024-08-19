@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react'
+import { platformAtom } from '@renderer/store'
+import { useAtomValue } from 'jotai'
 
 export const usePlatform = () => {
-  const [platform, setPlatform] = useState<NodeJS.Platform>()
-
-  useEffect(() => {
-    window.context.getPlatform().then((platform: string) => {
-      setPlatform(platform as NodeJS.Platform)
-    })
-  }, [])
+  const platform = useAtomValue(platformAtom)
 
   return {
     platform,
-    isMacOS: platform === 'darwin',
-    isWindows: platform === 'win32',
-    isLinux: platform === 'linux'
+    isMacOS: platform === 'darwin'
   }
 }

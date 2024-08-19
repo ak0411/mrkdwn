@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: mark-it-down
+productName: mrkdwn
 directories:
   buildResources: build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: mark-it-down
+  executableName: mrkdwn
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

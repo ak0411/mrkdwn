@@ -103,3 +103,10 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
 
   set(selectedNoteIndexAtom, null)
 })
+
+const loadPlatform = async () => {
+  const platform = await window.context.getPlatform()
+  return platform
+}
+
+export const platformAtom = atom<Promise<NodeJS.Platform>>(loadPlatform())
