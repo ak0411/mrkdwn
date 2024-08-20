@@ -4,10 +4,11 @@ A note-taking app with markdown support.
 
 ## TODOs
 
-- [ ] Rename notes
+- [x] Rename notes
 - [ ] Pop-out notes
 - [ ] Pin notes on top
 - [ ] Save notes on cloud (database)
+- [ ] User system
 
 ## Recommended IDE Setup
 

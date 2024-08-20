@@ -7,6 +7,7 @@ import {
   Maximize,
   Minimize,
   ReadNote,
+  RenameNote,
   WriteNote
 } from '@shared/types'
 
@@ -19,6 +20,7 @@ declare global {
       writeNote: WriteNote
       createNote: CreateNote
       deleteNote: DeleteNote
+      renameNote: RenameNote
       minimize: Minimize
       maximize: Maximize
       close: Close

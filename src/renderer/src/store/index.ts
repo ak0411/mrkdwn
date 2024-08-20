@@ -1,6 +1,7 @@
 import { NoteContent, NoteInfo } from '@shared/models'
 import { atom } from 'jotai'
 import { unwrap } from 'jotai/utils'
+import { isEmpty } from 'lodash'
 
 const loadNotes = async () => {
   const notes = await window.context.getNotes()
@@ -102,6 +103,29 @@ export const deleteNoteAtom = atom(null, async (get, set) => {
   )
 
   set(selectedNoteIndexAtom, null)
+})
+
+export const renameNoteAtom = atom(null, async (get, set, newTitle: string) => {
+  const notes = get(notesAtom)
+  const selectedNote = get(selectedNoteAtom)
+
+  if (!selectedNote || !notes || isEmpty(newTitle)) return
+
+  const isRenamed = await window.context.renameNote(selectedNote.title, newTitle)
+
+  if (!isRenamed) return
+
+  const updatedNote = {
+    ...selectedNote,
+    title: newTitle,
+    lastEditTime: Date.now()
+  }
+
+  // Filter out the old note and add the updated one to the top of the list
+  set(notesAtom, [updatedNote, ...notes.filter((note) => note.title !== selectedNote.title)])
+
+  // Optionally, update the selected note index if needed
+  set(selectedNoteIndexAtom, 0)
 })
 
 const loadPlatform = async () => {
