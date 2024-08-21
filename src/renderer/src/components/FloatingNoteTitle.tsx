@@ -1,37 +1,20 @@
-import { renameNoteAtom, selectedNoteAtom } from '@renderer/store'
-import { useAtomValue, useSetAtom } from 'jotai'
-import { ComponentProps, useEffect, useState } from 'react'
+import { useFloatingNoteTitle } from '@renderer/hooks/useFloatingNoteTitle'
+import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { NewWindowButton, RenameButton } from './Button'
 
 export const FloatingNoteTitle = ({ className, ...props }: ComponentProps<'div'>) => {
-  const selectedNote = useAtomValue(selectedNoteAtom)
-  const renameNote = useSetAtom(renameNoteAtom)
-  const [isEditing, setIsEditing] = useState(false)
-  const [editTitle, setEditTitle] = useState(selectedNote?.title || '')
-
-  useEffect(() => {
-    if (selectedNote) {
-      setEditTitle(selectedNote.title)
-    }
-  }, [selectedNote])
+  const {
+    selectedNote,
+    isEditing,
+    editTitle,
+    setEditTitle,
+    handleRename,
+    handleSave,
+    handleCancel
+  } = useFloatingNoteTitle()
 
   if (!selectedNote) return null
-
-  const handleRename = () => {
-    setIsEditing(!isEditing)
-    console.info(isEditing)
-  }
-
-  const handleSave = () => {
-    renameNote(editTitle)
-    setIsEditing(false)
-  }
-
-  const handleCancel = () => {
-    setEditTitle(selectedNote.title)
-    setIsEditing(false)
-  }
 
   return (
     <div className={twMerge('flex justify-center relative', className)} {...props}>

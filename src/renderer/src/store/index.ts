@@ -109,7 +109,7 @@ export const renameNoteAtom = atom(null, async (get, set, newTitle: string) => {
   const notes = get(notesAtom)
   const selectedNote = get(selectedNoteAtom)
 
-  if (!selectedNote || !notes || isEmpty(newTitle)) return
+  if (!selectedNote || !notes || isEmpty(newTitle) || newTitle === selectedNote.title) return
 
   const isRenamed = await window.context.renameNote(selectedNote.title, newTitle)
 
