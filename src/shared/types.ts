@@ -12,3 +12,4 @@ export type Maximize = () => void
 export type Close = () => void
 
 export type GetPlatform = () => Promise<NodeJS.Platform>
+export type PopupNote = (title: string) => Promise<void>

@@ -7,8 +7,8 @@ import {
 } from '@mdxeditor/editor'
 import { useMarkdownEditor } from '@renderer/hooks/useMarkdownEditor'
 
-export const MarkdownEditor = () => {
-  const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useMarkdownEditor()
+export const MarkdownEditor = ({ title }: { title?: string }) => {
+  const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useMarkdownEditor(title)
 
   if (!selectedNote) return null
 

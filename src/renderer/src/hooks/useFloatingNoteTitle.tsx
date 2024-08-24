@@ -31,6 +31,12 @@ export const useFloatingNoteTitle = () => {
     setIsEditing(false)
   }
 
+  const handlePopup = () => {
+    if (!selectedNote) return
+
+    window.context.popupNote(selectedNote.title)
+  }
+
   return {
     selectedNote,
     isEditing,
@@ -38,6 +44,7 @@ export const useFloatingNoteTitle = () => {
     setEditTitle,
     handleRename,
     handleSave,
-    handleCancel
+    handleCancel,
+    handlePopup
   }
 }

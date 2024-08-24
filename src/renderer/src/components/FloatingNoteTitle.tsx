@@ -11,7 +11,8 @@ export const FloatingNoteTitle = ({ className, ...props }: ComponentProps<'div'>
     setEditTitle,
     handleRename,
     handleSave,
-    handleCancel
+    handleCancel,
+    handlePopup
   } = useFloatingNoteTitle()
 
   if (!selectedNote) return null
@@ -35,7 +36,7 @@ export const FloatingNoteTitle = ({ className, ...props }: ComponentProps<'div'>
       )}
       <div className="absolute right-2 flex gap-2">
         {!isEditing && <RenameButton onClick={handleRename} />}
-        <NewWindowButton />
+        <NewWindowButton onClick={handlePopup} />
       </div>
     </div>
   )

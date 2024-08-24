@@ -1,4 +1,12 @@
-import { CreateNote, DeleteNote, GetNotes, ReadNote, RenameNote, WriteNote } from '@shared/types'
+import {
+  CreateNote,
+  DeleteNote,
+  GetNotes,
+  PopupNote,
+  ReadNote,
+  RenameNote,
+  WriteNote
+} from '@shared/types'
 import { contextBridge, ipcRenderer } from 'electron'
 
 if (!process.contextIsolated) {
@@ -18,7 +26,8 @@ try {
     minimize: () => ipcRenderer.send('window-minimize'),
     maximize: () => ipcRenderer.send('window-maximize'),
     close: () => ipcRenderer.send('window-close'),
-    getPlatform: () => ipcRenderer.invoke('get-platform')
+    getPlatform: () => ipcRenderer.invoke('get-platform'),
+    popupNote: (...args: Parameters<PopupNote>) => ipcRenderer.invoke('popup-note', ...args)
   })
 } catch (error) {
   console.error(error)

@@ -87,6 +87,41 @@ app.whenReady().then(() => {
 
   ipcMain.handle('get-platform', () => process.platform)
 
+  ipcMain.handle('popup-note', async (_, title: string) => {
+    const existingWindow = BrowserWindow.getAllWindows().find((win) => win.getTitle() === title)
+
+    if (existingWindow) {
+      existingWindow.focus()
+      return
+    }
+
+    const popupNote = new BrowserWindow({
+      width: 800,
+      height: 600,
+      ...(process.platform === 'linux' ? { icon } : {}),
+      center: true,
+      title: title,
+      frame: false,
+      titleBarStyle: 'hiddenInset',
+      backgroundMaterial: 'acrylic',
+      webPreferences: {
+        preload: join(__dirname, '../preload/index.js'),
+        sandbox: true,
+        contextIsolation: true
+      }
+    })
+
+    if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+      popupNote.loadURL(
+        `${process.env['ELECTRON_RENDERER_URL']}#/note/${encodeURIComponent(title)}`
+      )
+    } else {
+      popupNote.loadFile(join(__dirname, '../renderer/index.html'), {
+        hash: `/note/${encodeURIComponent(title)}`
+      })
+    }
+  })
+
   createWindow()
 
   app.on('activate', function () {

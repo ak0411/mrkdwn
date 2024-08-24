@@ -5,7 +5,7 @@ A note-taking app with markdown support.
 ## TODOs
 
 - [x] Rename notes
-- [ ] Pop-out notes
+- [x] Popup notes
 - [ ] Pin notes on top
 - [ ] Save notes on cloud (database)
 - [ ] User system

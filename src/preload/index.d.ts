@@ -6,6 +6,7 @@ import {
   GetPlatform,
   Maximize,
   Minimize,
+  PopupNote,
   ReadNote,
   RenameNote,
   WriteNote
@@ -25,6 +26,7 @@ declare global {
       maximize: Maximize
       close: Close
       getPlatform: GetPlatform
+      popupNote: PopupNote
     }
   }
 }
