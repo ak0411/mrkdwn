@@ -2,7 +2,7 @@ import { renameNoteAtom, selectedNoteAtom } from '@renderer/store'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 
-export const useFloatingNoteTitle = () => {
+export const useFloatingNoteBar = () => {
   const selectedNote = useAtomValue(selectedNoteAtom)
   const renameNote = useSetAtom(renameNoteAtom)
   const [isEditing, setIsEditing] = useState(false)

@@ -1,9 +1,9 @@
-import { useFloatingNoteTitle } from '@renderer/hooks/useFloatingNoteTitle'
+import { useFloatingNoteBar } from '@renderer/hooks/useFloatingNoteBar'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { NewWindowButton, RenameButton } from './Button'
 
-export const FloatingNoteTitle = ({ className, ...props }: ComponentProps<'div'>) => {
+export const FloatingNoteBar = ({ className, ...props }: ComponentProps<'div'>) => {
   const {
     selectedNote,
     isEditing,
@@ -13,7 +13,7 @@ export const FloatingNoteTitle = ({ className, ...props }: ComponentProps<'div'>
     handleSave,
     handleCancel,
     handlePopup
-  } = useFloatingNoteTitle()
+  } = useFloatingNoteBar()
 
   if (!selectedNote) return null
 

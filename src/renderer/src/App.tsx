@@ -2,7 +2,7 @@ import {
   ActionButtonRows,
   Content,
   DraggableTopBar,
-  FloatingNoteTitle,
+  FloatingNoteBar,
   MarkdownEditor,
   NotePreviewList,
   PopupNoteEditor,
@@ -33,7 +33,7 @@ const App = () => {
                   <NotePreviewList className="mt-3 space-y-1" onSelect={resetScroll} />
                 </Sidebar>
                 <Content ref={contentContainerRef} className="bg-zinc-900/50">
-                  <FloatingNoteTitle className="pt-2" />
+                  <FloatingNoteBar className="pt-2" />
                   <MarkdownEditor />
                 </Content>
               </RootLayout>
