@@ -34,7 +34,7 @@ export const FloatingNoteBar = ({ className, ...props }: ComponentProps<'div'>) 
       ) : (
         <span className="text-gray-400">{selectedNote.title}</span>
       )}
-      <div className="absolute right-2 flex gap-2">
+      <div className="absolute right-2 flex gap-2 z-50">
         {!isEditing && <RenameButton onClick={handleRename} />}
         <NewWindowButton onClick={handlePopup} />
       </div>

@@ -7,7 +7,8 @@ import {
   NotePreviewList,
   PopupNoteEditor,
   RootLayout,
-  Sidebar
+  Sidebar,
+  TrafficLights
 } from '@/components'
 import { useRef } from 'react'
 import { Route, HashRouter as Router, Routes } from 'react-router-dom'
@@ -19,6 +20,10 @@ const App = () => {
     contentContainerRef.current?.scrollTo(0, 0)
   }
 
+  const handleClose = () => window.context.close()
+  const handleMinimize = () => window.context.minimize()
+  const handleMaximize = () => window.context.maximize()
+
   return (
     <Router>
       <Routes>
@@ -26,7 +31,16 @@ const App = () => {
           path="/"
           element={
             <>
-              <DraggableTopBar />
+              <DraggableTopBar>
+                <DraggableTopBar className="z-50">
+                  <TrafficLights
+                    onClose={handleClose}
+                    onMinimize={handleMinimize}
+                    onMaximize={handleMaximize}
+                    className="m-2"
+                  />
+                </DraggableTopBar>
+              </DraggableTopBar>
               <RootLayout>
                 <Sidebar className="p-2">
                   <ActionButtonRows className="flex justify-between mt-1" />

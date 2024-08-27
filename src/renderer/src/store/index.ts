@@ -80,7 +80,6 @@ export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent)
     )
   }
 
-  // Update selectedNoteAtom if we're working with a provided title
   if (providedTitle) {
     set(selectedNoteAtom, {
       title: providedTitle,
