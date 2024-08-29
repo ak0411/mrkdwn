@@ -5,12 +5,14 @@ type TrafficLightsProps = ComponentProps<'div'> & {
   onClose?: () => void
   onMinimize?: () => void
   onMaximize?: () => void
+  onPin?: () => void
 }
 
 export const TrafficLights = ({
   onClose,
   onMinimize,
   onMaximize,
+  onPin,
   className,
   ...props
 }: TrafficLightsProps) => {
@@ -28,6 +30,7 @@ export const TrafficLights = ({
         onClick={onMaximize}
         className="w-4 h-4 rounded-full bg-green-500 hover:bg-green-600 transition-colors"
       />
+      <button className="w-4 h-4 rounded-full bg-purple-500 hover:bg-purple-600 transition-colors" />
     </div>
   )
 }

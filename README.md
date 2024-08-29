@@ -9,6 +9,7 @@ A note-taking app with markdown support.
 - [ ] Pin notes on top
 - [ ] Save notes on cloud (database)
 - [ ] User system
+- [ ] Sync notes between main and popup
 
 ## Recommended IDE Setup
 
