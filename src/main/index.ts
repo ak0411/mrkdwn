@@ -78,12 +78,12 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  ipcMain.handle('getNotes', (_, ...args: Parameters<GetNotes>) => getNotes(...args))
-  ipcMain.handle('readNote', (_, ...args: Parameters<ReadNote>) => readNote(...args))
-  ipcMain.handle('writeNote', (_, ...args: Parameters<WriteNote>) => writeNote(...args))
-  ipcMain.handle('createNote', (_, ...args: Parameters<CreateNote>) => createNote(...args))
-  ipcMain.handle('deleteNote', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args))
-  ipcMain.handle('renameNote', (_, ...args: Parameters<RenameNote>) => renameNote(...args))
+  ipcMain.handle('get-notes', (_, ...args: Parameters<GetNotes>) => getNotes(...args))
+  ipcMain.handle('read-note', (_, ...args: Parameters<ReadNote>) => readNote(...args))
+  ipcMain.handle('write-note', (_, ...args: Parameters<WriteNote>) => writeNote(...args))
+  ipcMain.handle('create-note', (_, ...args: Parameters<CreateNote>) => createNote(...args))
+  ipcMain.handle('delete-note', (_, ...args: Parameters<DeleteNote>) => deleteNote(...args))
+  ipcMain.handle('rename-note', (_, ...args: Parameters<RenameNote>) => renameNote(...args))
 
   ipcMain.handle('get-platform', () => process.platform)
 

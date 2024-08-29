@@ -16,12 +16,12 @@ if (!process.contextIsolated) {
 try {
   contextBridge.exposeInMainWorld('context', {
     locate: navigator.language,
-    getNotes: (...args: Parameters<GetNotes>) => ipcRenderer.invoke('getNotes', ...args),
-    readNote: (...args: Parameters<ReadNote>) => ipcRenderer.invoke('readNote', ...args),
-    writeNote: (...args: Parameters<WriteNote>) => ipcRenderer.invoke('writeNote', ...args),
-    createNote: (...args: Parameters<CreateNote>) => ipcRenderer.invoke('createNote', ...args),
-    deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('deleteNote', ...args),
-    renameNote: (...args: Parameters<RenameNote>) => ipcRenderer.invoke('renameNote', ...args),
+    getNotes: (...args: Parameters<GetNotes>) => ipcRenderer.invoke('get-notes', ...args),
+    readNote: (...args: Parameters<ReadNote>) => ipcRenderer.invoke('read-note', ...args),
+    writeNote: (...args: Parameters<WriteNote>) => ipcRenderer.invoke('write-note', ...args),
+    createNote: (...args: Parameters<CreateNote>) => ipcRenderer.invoke('create-note', ...args),
+    deleteNote: (...args: Parameters<DeleteNote>) => ipcRenderer.invoke('delete-note', ...args),
+    renameNote: (...args: Parameters<RenameNote>) => ipcRenderer.invoke('rename-note', ...args),
     platform: () => ipcRenderer.invoke('get-platform'),
     minimize: () => ipcRenderer.send('window-minimize'),
     maximize: () => ipcRenderer.send('window-maximize'),
