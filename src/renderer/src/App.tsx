@@ -32,14 +32,12 @@ const App = () => {
           element={
             <>
               <DraggableTopBar>
-                <DraggableTopBar className="z-50">
-                  <TrafficLights
-                    onClose={handleClose}
-                    onMinimize={handleMinimize}
-                    onMaximize={handleMaximize}
-                    className="m-2"
-                  />
-                </DraggableTopBar>
+                <TrafficLights
+                  onClose={handleClose}
+                  onMinimize={handleMinimize}
+                  onMaximize={handleMaximize}
+                  className="m-2"
+                />
               </DraggableTopBar>
               <RootLayout>
                 <Sidebar className="p-2">
