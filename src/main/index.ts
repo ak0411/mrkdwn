@@ -16,7 +16,7 @@ function createWindow(): void {
     center: true,
     title: 'Mrkdwn',
     frame: false,
-    titleBarStyle: 'hiddenInset',
+    titleBarStyle: 'hidden',
     backgroundMaterial: 'acrylic',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
