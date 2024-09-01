@@ -6,10 +6,5 @@ export type WriteNote = (title: NoteInfo['title'], content: NoteContent) => Prom
 export type CreateNote = () => Promise<NoteInfo['title'] | false>
 export type DeleteNote = (title: NoteInfo['title']) => Promise<boolean>
 export type RenameNote = (title: NoteInfo['title'], newTitle: string) => Promise<boolean>
-
-export type Minimize = () => void
-export type Maximize = () => void
-export type Close = () => void
-
 export type GetPlatform = () => Promise<NodeJS.Platform>
 export type PopupNote = (title: NoteInfo['title']) => Promise<void>

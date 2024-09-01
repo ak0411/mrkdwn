@@ -22,17 +22,10 @@ export const PopupNoteEditor = () => {
     }
   }, [])
 
-  const handleClose = () => window.context.close()
-  const handleMinimize = () => window.context.minimize()
-  const handleMaximize = () => window.context.maximize()
-
   return (
     <>
       <DraggableTopBar className="z-50">
         <TrafficLights
-          onClose={handleClose}
-          onMinimize={handleMinimize}
-          onMaximize={handleMaximize}
           className={`
             m-2 transition-opacity duration-300
             ${isScrollTop ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}

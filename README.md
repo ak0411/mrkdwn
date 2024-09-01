@@ -6,7 +6,7 @@ A note-taking app with markdown support.
 
 - [x] Rename notes
 - [x] Popup notes
-- [ ] Pin notes on top
+- [x] Pin windows on top
 - [ ] Save notes on cloud (database)
 - [ ] User system
 - [ ] Sync notes between main and popup

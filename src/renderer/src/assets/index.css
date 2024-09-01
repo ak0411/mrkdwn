@@ -15,7 +15,7 @@
 
     @apply bg-transparent;
 
-    @apply font-mono antialiased text-white;
+    @apply font-mono antialiased;
 
     @apply overflow-hidden;
   }
@@ -24,11 +24,12 @@
     -webkit-app-region: drag;
   }
 
-  button {
+  button,
+  input {
     -webkit-app-region: no-drag;
   }
 
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     @apply w-2;
   }
 
@@ -38,5 +39,5 @@
 
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
-  }
+  } */
 }

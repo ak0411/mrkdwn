@@ -10,6 +10,8 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    minWidth: 600,
+    minHeight: 400,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -17,7 +19,6 @@ function createWindow(): void {
     title: 'Mrkdwn',
     frame: false,
     titleBarStyle: 'hidden',
-    backgroundMaterial: 'acrylic',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: true,
@@ -27,6 +28,15 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+  })
+
+  mainWindow.on('closed', () => {
+    // Close all other windows when the main window is closed
+    BrowserWindow.getAllWindows().forEach((window) => {
+      if (window !== mainWindow) {
+        window.close()
+      }
+    })
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -64,6 +74,11 @@ ipcMain.on('window-close', (event) => {
   if (win) win.close()
 })
 
+ipcMain.on('window-pin', (event, isPinned: boolean) => {
+  const win = BrowserWindow.fromWebContents(event.sender)
+  if (win) win.setAlwaysOnTop(isPinned)
+})
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -98,12 +113,13 @@ app.whenReady().then(() => {
     const popupNote = new BrowserWindow({
       width: 800,
       height: 600,
+      minWidth: 400,
+      minHeight: 400,
       ...(process.platform === 'linux' ? { icon } : {}),
       center: true,
       title: title,
       frame: false,
       titleBarStyle: 'hiddenInset',
-      backgroundMaterial: 'acrylic',
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'),
         sandbox: true,

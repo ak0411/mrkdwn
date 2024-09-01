@@ -1,11 +1,8 @@
 import {
-  Close,
   CreateNote,
   DeleteNote,
   GetNotes,
   GetPlatform,
-  Maximize,
-  Minimize,
   PopupNote,
   ReadNote,
   RenameNote,
@@ -22,9 +19,10 @@ declare global {
       createNote: CreateNote
       deleteNote: DeleteNote
       renameNote: RenameNote
-      minimize: Minimize
-      maximize: Maximize
-      close: Close
+      minimize: () => void
+      maximize: () => void
+      close: () => void
+      pin: (isPinned: boolean) => void
       getPlatform: GetPlatform
       popupNote: PopupNote
     }

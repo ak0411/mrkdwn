@@ -20,10 +20,6 @@ const App = () => {
     contentContainerRef.current?.scrollTo(0, 0)
   }
 
-  const handleClose = () => window.context.close()
-  const handleMinimize = () => window.context.minimize()
-  const handleMaximize = () => window.context.maximize()
-
   return (
     <Router>
       <Routes>
@@ -31,16 +27,10 @@ const App = () => {
           path="/"
           element={
             <>
-              <DraggableTopBar>
-                <TrafficLights
-                  onClose={handleClose}
-                  onMinimize={handleMinimize}
-                  onMaximize={handleMaximize}
-                  className="m-2"
-                />
-              </DraggableTopBar>
+              <DraggableTopBar />
               <RootLayout>
-                <Sidebar className="p-2">
+                <Sidebar className="p-2 z-10">
+                  <TrafficLights className="mb-10" />
                   <ActionButtonRows className="flex justify-between mt-1" />
                   <NotePreviewList className="mt-3 space-y-1" onSelect={resetScroll} />
                 </Sidebar>

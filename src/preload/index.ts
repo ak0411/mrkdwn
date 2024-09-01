@@ -26,6 +26,7 @@ try {
     minimize: () => ipcRenderer.send('window-minimize'),
     maximize: () => ipcRenderer.send('window-maximize'),
     close: () => ipcRenderer.send('window-close'),
+    pin: (isPinned: boolean) => ipcRenderer.send('window-pin', isPinned),
     getPlatform: () => ipcRenderer.invoke('get-platform'),
     popupNote: (...args: Parameters<PopupNote>) => ipcRenderer.invoke('popup-note', ...args)
   })
