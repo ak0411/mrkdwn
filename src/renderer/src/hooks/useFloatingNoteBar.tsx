@@ -33,8 +33,7 @@ export const useFloatingNoteBar = () => {
 
   const handlePopup = () => {
     if (!selectedNote) return
-
-    window.context.popupNote(selectedNote.title)
+    window.context.popupNote(selectedNote)
   }
 
   return {

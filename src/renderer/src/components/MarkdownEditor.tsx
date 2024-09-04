@@ -8,7 +8,9 @@ import {
 import { useMarkdownEditor } from '@renderer/hooks/useMarkdownEditor'
 
 export const MarkdownEditor = ({ title }: { title?: string }) => {
-  const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useMarkdownEditor(title)
+  const { editorRef, selectedNote, handleAutoSaving, handleBlur } = useMarkdownEditor({
+    title
+  })
 
   if (!selectedNote) return null
 

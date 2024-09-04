@@ -1,5 +1,6 @@
 import { createNote, deleteNote, getNotes, readNote, renameNote, writeNote } from '@/lib'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
+import { NoteContent, NoteInfo } from '@shared/models'
 import { CreateNote, DeleteNote, GetNotes, ReadNote, RenameNote, WriteNote } from '@shared/types'
 import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { join } from 'path'
@@ -102,8 +103,10 @@ app.whenReady().then(() => {
 
   ipcMain.handle('get-platform', () => process.platform)
 
-  ipcMain.handle('popup-note', async (_, title: string) => {
-    const existingWindow = BrowserWindow.getAllWindows().find((win) => win.getTitle() === title)
+  ipcMain.handle('popup-note', async (_, note: NoteInfo & { content: NoteContent }) => {
+    const existingWindow = BrowserWindow.getAllWindows().find(
+      (win) => win.getTitle() === note.title
+    )
 
     if (existingWindow) {
       existingWindow.focus()
@@ -117,7 +120,7 @@ app.whenReady().then(() => {
       minHeight: 400,
       ...(process.platform === 'linux' ? { icon } : {}),
       center: true,
-      title: title,
+      title: note.title,
       frame: false,
       titleBarStyle: 'hiddenInset',
       webPreferences: {
@@ -129,11 +132,11 @@ app.whenReady().then(() => {
 
     if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
       popupNote.loadURL(
-        `${process.env['ELECTRON_RENDERER_URL']}#/note/${encodeURIComponent(title)}`
+        `${process.env['ELECTRON_RENDERER_URL']}#/note/${encodeURIComponent(note.title)}`
       )
     } else {
       popupNote.loadFile(join(__dirname, '../renderer/index.html'), {
-        hash: `/note/${encodeURIComponent(title)}`
+        hash: `/note/${encodeURIComponent(note.title)}`
       })
     }
   })

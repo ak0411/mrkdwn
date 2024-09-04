@@ -7,4 +7,4 @@ export type CreateNote = () => Promise<NoteInfo['title'] | false>
 export type DeleteNote = (title: NoteInfo['title']) => Promise<boolean>
 export type RenameNote = (title: NoteInfo['title'], newTitle: string) => Promise<boolean>
 export type GetPlatform = () => Promise<NodeJS.Platform>
-export type PopupNote = (title: NoteInfo['title']) => Promise<void>
+export type PopupNote = (note: NoteInfo & { content: NoteContent }) => Promise<void>

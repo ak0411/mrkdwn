@@ -1,30 +1,41 @@
 import { MDXEditorMethods } from '@mdxeditor/editor'
-import { providedTitleAtom, saveNoteAtom, selectedNoteAtom } from '@renderer/store'
+import { notesAtom, saveNoteAtom, selectedNoteAtom, selectedNoteIndexAtom } from '@renderer/store'
 import { autoSavingTime } from '@shared/constants'
 import { NoteContent } from '@shared/models'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { throttle } from 'lodash'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-export const useMarkdownEditor = (title?: string) => {
+export const useMarkdownEditor = ({ title }: { title?: string }) => {
   const selectedNote = useAtomValue(selectedNoteAtom)
   const saveNote = useSetAtom(saveNoteAtom)
-  const setProvidedTitle = useSetAtom(providedTitleAtom)
   const editorRef = useRef<MDXEditorMethods>(null)
+  const [prevContent, setPrevContent] = useState<string | null>(null)
 
+  // When title is provided, find the note with the given title (used in popup note editor)
+  const notes = useAtomValue(notesAtom)
+  const setSelectedNoteIndex = useSetAtom(selectedNoteIndexAtom)
   useEffect(() => {
-    if (title) {
-      setProvidedTitle(title)
+    if (title && notes) {
+      const noteIndex = notes.findIndex((note) => note.title === title)
+      if (noteIndex !== -1) {
+        setSelectedNoteIndex(noteIndex)
+      }
     }
-  }, [title, setProvidedTitle])
+  }, [title, notes, setSelectedNoteIndex])
+
+  const handleSave = async (content: NoteContent) => {
+    setPrevContent(content)
+    await saveNote(content)
+  }
 
   const handleAutoSaving = throttle(
     async (content: NoteContent) => {
-      if (!selectedNote) return
+      if (!selectedNote || content === prevContent) return
 
       console.info('Auto saving: ', selectedNote.title)
 
-      await saveNote(content)
+      await handleSave(content)
     },
     autoSavingTime,
     {
@@ -40,8 +51,8 @@ export const useMarkdownEditor = (title?: string) => {
 
     const content = editorRef.current?.getMarkdown()
 
-    if (content != null) {
-      await saveNote(content)
+    if (content != null && content !== prevContent) {
+      await handleSave(content)
     }
   }
 
